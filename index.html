@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-TW">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -7,75 +7,89 @@
 
   <style>
     :root{
-      --bg:#eef3f6;
+      --bg:#f3f5f7;
       --card:#ffffff;
-      --ink:#0f172a;
       --text:#1f2937;
-      --muted:#64748b;
-      --border:#e2e8f0;
-      --primary:#0f766e;
-      --secondary:#1d4ed8;
-      --accent:#14b8a6;
-      --shadow:0 12px 28px rgba(2,6,23,.12);
-      --radius:18px;
+      --muted:#6b7280;
+      --border:#e5e7eb;
+      --accent:#9b3b3b;
+      --accent-weak:#fff7f7;
+      --shadow:0 10px 26px rgba(0,0,0,.08);
     }
 
     *{ box-sizing:border-box; }
     body{
       margin:0;
+      padding:36px 18px 64px;
       background:var(--bg);
-      font-family:"Noto Sans TC","Microsoft JhengHei",system-ui,sans-serif;
+      font-family:"微軟正黑體", Arial, sans-serif;
       color:var(--text);
-      line-height:1.7;
-      padding:28px 16px 64px;
+      line-height:1.75;
     }
-    .wrap{ max-width:1180px; margin:0 auto; }
+    .wrap{ max-width:1200px; margin:0 auto; }
 
-    header{
-      background:linear-gradient(135deg,var(--primary),var(--secondary));
-      color:#fff;
-      border-radius:26px;
-      padding:28px 24px;
-      box-shadow:var(--shadow);
+    /* header */
+    .header{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      margin-bottom:22px;
     }
-    header h1{
+    .title{
       margin:0;
-      font-size:2rem;
+      font-size:2.1rem;
       letter-spacing:.5px;
+      display:flex;
+      align-items:center;
+      gap:12px;
     }
-    header p{
-      margin:10px 0 0;
-      opacity:.9;
-      font-weight:600;
+    .title::before{
+      content:"";
+      width:10px;
+      height:34px;
+      border-radius:6px;
+      background:var(--accent);
+    }
+    .subtitle{
+      margin:0;
+      color:var(--muted);
+      font-size:1.05rem;
+      max-width:70ch;
     }
 
     section{ margin-top:26px; }
 
     h2{
-      margin:0 0 12px;
-      font-size:1.35rem;
-      color:var(--ink);
+      margin:0 0 14px;
+      font-size:1.4rem;
       display:flex;
       align-items:center;
       gap:10px;
     }
     h2::before{
       content:"";
-      width:10px;height:10px;
-      border-radius:4px;
+      width:8px;
+      height:8px;
+      border-radius:3px;
       background:var(--accent);
     }
 
     .card{
       background:var(--card);
       border:1px solid var(--border);
-      border-radius:var(--radius);
+      border-radius:16px;
       box-shadow:var(--shadow);
       overflow:hidden;
     }
-    .cardBody{ padding:16px 18px; }
+    .cardBody{
+      padding:18px 20px;
+    }
+    .cardBody p{
+      margin:0 0 10px;
+    }
+    .cardBody p:last-child{ margin-bottom:0; }
 
-    .overview img{
+    .imgWrap img{
       width:100%;
       display:block;
       border-top:1px solid var(--border);
@@ -85,7 +99,7 @@
       display:grid;
       gap:18px;
     }
-    @media(min-width:900px){
+    @media(min-width:920px){
       .grid{ grid-template-columns:1fr 1fr; }
     }
 
@@ -93,33 +107,53 @@
       display:grid;
       gap:18px;
     }
-    @media(min-width:768px){
+    @media(min-width:900px){
       .gallery{ grid-template-columns:repeat(3,1fr); }
     }
 
     .gItem{
       background:#fff;
       border:1px solid var(--border);
-      border-radius:16px;
+      border-radius:14px;
       box-shadow:var(--shadow);
       overflow:hidden;
+      display:flex;
+      flex-direction:column;
+    }
+    .gItem .text{
+      padding:14px 16px;
+      font-size:1rem;
     }
     .gItem img{
       width:100%;
       display:block;
+      border-top:1px solid var(--border);
     }
 
-    .btn{
-      display:inline-flex;
+    .pdf{
+      display:flex;
       align-items:center;
-      justify-content:center;
-      padding:12px 18px;
-      border-radius:14px;
-      background:linear-gradient(135deg,var(--primary),var(--secondary));
-      color:#fff;
-      font-weight:700;
+      justify-content:space-between;
+      gap:14px;
+      padding:18px 20px;
+    }
+    .pdf a{
       text-decoration:none;
+      font-weight:900;
+      color:#fff;
+      background:linear-gradient(180deg, var(--accent), #7f2b2b);
+      padding:12px 18px;
+      border-radius:12px;
       box-shadow:var(--shadow);
+      white-space:nowrap;
+    }
+    .pdf span{
+      color:var(--muted);
+      font-size:1rem;
+    }
+
+    @media(max-width:640px){
+      .title{ font-size:1.7rem; }
     }
   </style>
 </head>
@@ -127,44 +161,77 @@
 <body>
 <div class="wrap">
 
-<header>
-  <h1>宜蘭縣氣候變遷推動因應會</h1>
-  <p>整合中央政策、地方治理與跨局處協作，推動宜蘭縣氣候變遷調適行動</p>
-</header>
-
-<section class="overview">
-  <h2>調適策略與關鍵領域概述</h2>
-  <div class="card">
-    <div class="cardBody">
-      本推動因應會依循國家氣候變遷調適政策架構，整合維生基礎設施、水資源、土地利用、
-      海岸及海洋、能源供給與產業、農業及生物多樣性、健康與能力建構等關鍵領域，
-      作為宜蘭縣推動氣候變遷調適與治理的核心基礎。
-    </div>
-    <img src="宜蘭縣調適策略與關鍵領域說明.png" alt="宜蘭縣調適策略與關鍵領域說明">
+  <div class="header">
+    <h1 class="title">宜蘭縣氣候變遷推動因應會</h1>
+    <p class="subtitle">
+      依據《氣候變遷因應法》及國家氣候變遷調適政策架構，整合中央政策、
+      地方治理與跨局處協作，推動宜蘭縣氣候變遷調適與治理工作。
+    </p>
   </div>
-</section>
 
-<section>
-  <h2>組織與權責架構</h2>
-  <div class="gallery">
-    <div class="gItem">
-      <img src="宜蘭縣氣候變遷因應推動會組織架構.jpeg" alt="宜蘭縣氣候變遷因應推動會組織架構">
+  <section>
+    <h2>調適策略與關鍵領域</h2>
+    <div class="card">
+      <div class="cardBody">
+        <p>
+          宜蘭縣依循國家氣候變遷調適行動計畫，將氣候風險辨識、衝擊評估與
+          調適行動納入地方治理，聚焦維生基礎設施、水資源、土地利用、
+          海岸及海洋、能源供給與產業、農業及生物多樣性、健康與能力建構
+          等關鍵領域。
+        </p>
+        <p>
+          各領域透過設定調適目標、滾動檢討策略與跨部門協作，
+          強化宜蘭縣面對極端氣候與災害風險之整體韌性。
+        </p>
+      </div>
+      <div class="imgWrap">
+        <img src="宜蘭縣調適策略與關鍵領域說明.png" alt="宜蘭縣調適策略與關鍵領域說明">
+      </div>
     </div>
-    <div class="gItem">
-      <img src="氣候變遷調適領域中央權責單位.jpeg" alt="氣候變遷調適領域中央權責單位">
-    </div>
-    <div class="gItem">
-      <img src="宜蘭縣調適領域架構及分工.jpeg" alt="宜蘭縣調適領域架構及分工">
-    </div>
-  </div>
-</section>
+  </section>
 
-<section>
-  <h2>調適行動文件</h2>
-  <a class="btn" href="114_宜蘭縣_宜蘭縣氣候變遷調適執行方案（核定本）.pdf" target="_blank" rel="noopener">
-    開啟核定本 PDF
-  </a>
-</section>
+  <section>
+    <h2>推動組織與治理架構</h2>
+    <div class="gallery">
+      <div class="gItem">
+        <div class="text">
+          宜蘭縣設置「氣候變遷因應推動會」，由縣長擔任召集人，
+          統籌縣府整體氣候治理方向，協調各局處推動減緩與調適工作。
+        </div>
+        <img src="宜蘭縣氣候變遷因應推動會組織架構.jpeg" alt="宜蘭縣氣候變遷因應推動會組織架構">
+      </div>
+
+      <div class="gItem">
+        <div class="text">
+          調適工作銜接中央部會權責分工，對應國家氣候變遷調適政策，
+          確保地方行動與中央策略一致，並強化跨層級治理。
+        </div>
+        <img src="氣候變遷調適領域中央權責單位.jpeg" alt="氣候變遷調適領域中央權責單位">
+      </div>
+
+      <div class="gItem">
+        <div class="text">
+          依調適領域劃分工作小組，明確主責與協辦單位，
+          落實水土資源、宜居環境、永續城鄉、綠色產業、
+          全民參與與能力建構等分工機制。
+        </div>
+        <img src="宜蘭縣調適領域架構及分工.jpeg" alt="宜蘭縣調適領域架構及分工">
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>調適執行方案</h2>
+    <div class="card pdf">
+      <span>
+        本方案為宜蘭縣氣候變遷調適行動之依據，涵蓋風險評估、
+        調適策略、推動期程、經費編列與管考機制。
+      </span>
+      <a href="114_宜蘭縣_宜蘭縣氣候變遷調適執行方案（核定本）.pdf" target="_blank" rel="noopener">
+        開啟核定本 PDF
+      </a>
+    </div>
+  </section>
 
 </div>
 </body>

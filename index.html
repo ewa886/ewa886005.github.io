@@ -27,15 +27,16 @@
       line-height:1.7;
     }
 
-    .page{ padding:26px 22px 70px; }
+    /* ✅ 上方留白：避免被外部系統導覽列擋到（可依實際高度微調） */
+    .page{
+      padding:52px 22px 70px; /* ← 原本 26px，上方加大 */
+    }
 
-    /* ✅ 關鍵：內容置中 */
     .wrap{
       max-width:1280px;
       margin:0 auto;
     }
 
-    /* Header */
     .header{
       display:flex;
       align-items:flex-end;
@@ -67,7 +68,6 @@
       font-size:1rem;
     }
 
-    /* 卡片 */
     .tile{
       background:var(--card);
       border:1px solid var(--border);
@@ -131,7 +131,6 @@
       font-size:1.05rem;
     }
 
-    /* 圖片 */
     .figure{
       border-top:1px solid var(--border);
       padding-top:12px;
@@ -144,7 +143,13 @@
       box-shadow:0 8px 18px rgba(0,0,0,.06);
     }
 
-    /* 三欄區 */
+    /* ✅ 圖說（caption） */
+    .caption{
+      margin:10px 0 0;
+      color:var(--muted);
+      font-size:.95rem;
+    }
+
     .grid3{
       display:grid;
       gap:16px;
@@ -154,7 +159,6 @@
       .grid3{ grid-template-columns:repeat(3,1fr); }
     }
 
-    /* PDF */
     .pdfBox{
       margin-top:20px;
       padding:16px 16px;
@@ -179,7 +183,6 @@
       text-decoration:none;
     }
 
-    /* Modal */
     .modal{
       position:fixed;
       inset:0;
@@ -199,6 +202,7 @@
     }
 
     @media (max-width: 640px){
+      .page{ padding:44px 14px 52px; }
       .header{ flex-direction:column; align-items:flex-start; }
       .title{ font-size:1.6rem; }
       .chip{ display:none; }
@@ -230,7 +234,8 @@
           能源供給與產業、農業及生物多樣性、健康與能力建構等領域。
         </p>
         <div class="figure">
-          <img class="zoomable" src="宜蘭縣調適策略與關鍵領域說明.png" alt="">
+          <img class="zoomable" src="宜蘭縣調適策略與關鍵領域說明.png" alt="" data-cap="圖 1　宜蘭縣調適策略與關鍵領域說明（點圖可放大）">
+          <p class="caption">圖 1　宜蘭縣調適策略與關鍵領域說明（點圖可放大）</p>
         </div>
       </div>
     </article>
@@ -244,7 +249,8 @@
         <div class="body">
           <h2 class="blockTitle">推動會組織架構</h2>
           <div class="figure">
-            <img class="zoomable" src="宜蘭縣氣候變遷因應推動會組織架構.jpeg" alt="">
+            <img class="zoomable" src="宜蘭縣氣候變遷因應推動會組織架構.jpeg" alt="" data-cap="圖 2　宜蘭縣氣候變遷因應推動會組織架構（點圖可放大）">
+            <p class="caption">圖 2　宜蘭縣氣候變遷因應推動會組織架構（點圖可放大）</p>
           </div>
         </div>
       </article>
@@ -257,7 +263,8 @@
         <div class="body">
           <h2 class="blockTitle">中央權責對應</h2>
           <div class="figure">
-            <img class="zoomable" src="氣候變遷調適領域中央權責單位.jpeg" alt="">
+            <img class="zoomable" src="氣候變遷調適領域中央權責單位.jpeg" alt="" data-cap="圖 3　氣候變遷調適領域中央權責單位（點圖可放大）">
+            <p class="caption">圖 3　氣候變遷調適領域中央權責單位（點圖可放大）</p>
           </div>
         </div>
       </article>
@@ -270,7 +277,8 @@
         <div class="body">
           <h2 class="blockTitle">調適領域分工</h2>
           <div class="figure">
-            <img class="zoomable" src="宜蘭縣調適領域架構及分工.jpeg" alt="">
+            <img class="zoomable" src="宜蘭縣調適領域架構及分工.jpeg" alt="" data-cap="圖 4　宜蘭縣調適領域架構及分工（點圖可放大）">
+            <p class="caption">圖 4　宜蘭縣調適領域架構及分工（點圖可放大）</p>
           </div>
         </div>
       </article>
@@ -278,7 +286,7 @@
 
     <div class="pdfBox">
       <span>宜蘭縣氣候變遷調適執行方案（核定本）</span>
-      <a class="btn" href="114_宜蘭縣_宜蘭縣氣候變遷調適執行方案（核定本）.pdf" target="_blank">
+      <a class="btn" href="114_宜蘭縣_宜蘭縣氣候變遷調適執行方案（核定本）.pdf" target="_blank" rel="noopener">
         開啟 PDF
       </a>
     </div>
@@ -287,21 +295,30 @@
 </div>
 
 <div class="modal" id="modal">
-  <img class="modalImg" id="modalImg">
+  <img class="modalImg" id="modalImg" alt="">
 </div>
 
 <script>
   const modal = document.getElementById('modal');
   const modalImg = document.getElementById('modalImg');
+
   document.querySelectorAll('.zoomable').forEach(img=>{
     img.addEventListener('click',()=>{
       modalImg.src = img.src;
       modal.classList.add('open');
     });
   });
+
   modal.addEventListener('click',()=>{
     modal.classList.remove('open');
     modalImg.src = '';
+  });
+
+  document.addEventListener('keydown',(e)=>{
+    if(e.key === 'Escape' && modal.classList.contains('open')){
+      modal.classList.remove('open');
+      modalImg.src = '';
+    }
   });
 </script>
 </body>

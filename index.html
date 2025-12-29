@@ -1,219 +1,533 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>宜蘭縣氣候變遷推動因應會</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>宜蘭縣氣候變遷推動因應會</title>
 
-<style>
-:root{
-  --bg:#f3f5f7;
-  --card:#ffffff;
-  --text:#1f2937;
-  --muted:#6b7280;
-  --border:#e5e7eb;
-  --accent:#9b3b3b;
-  --accent-weak:#fff7f7;
-  --shadow:0 6px 18px rgba(0,0,0,.08);
-}
+  <style>
+    :root{
+      --bg:#f3f5f7;
+      --card:#ffffff;
+      --text:#1f2937;
+      --muted:#6b7280;
+      --border:#e5e7eb;
+      --accent:#9b3b3b;
+      --accent-weak:#fff7f7;
+      --shadow:0 10px 26px rgba(0,0,0,.08);
+      --ink:#0b1220;
+      --link:#2563eb;
+    }
 
-*{ box-sizing:border-box; }
-body{
-  margin:0;
-  background:var(--bg);
-  font-family:"微軟正黑體", Arial, sans-serif;
-  color:var(--text);
-  line-height:1.7;
-}
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      background:var(--bg);
+      font-family:"微軟正黑體", Arial, sans-serif;
+      color:var(--text);
+      line-height:1.7;
+    }
 
-.page{ padding:24px 24px 64px; }
-.content{ max-width:1280px; }
+    /* 讓標題右側不要留大空白：內容區寬度放大、靠左 */
+    .page{ padding:26px 22px 70px; }
+    .wrap{ max-width:1280px; margin:0; } /* 不置中，靠左像系統內頁 */
 
-.header{
-  margin-bottom:24px;
-}
-.title{
-  font-size:1.9rem;
-  margin:0;
-  display:flex;
-  align-items:center;
-  gap:12px;
-}
-.title::before{
-  content:"";
-  width:10px;height:30px;
-  background:var(--accent);
-  border-radius:6px;
-}
-.subtitle{
-  margin:10px 0 0;
-  color:var(--muted);
-  max-width:85ch;
-}
+    /* Header（同你「相關網站連結」語言） */
+    .header{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:16px;
+      margin-bottom:18px;
+    }
+    .title{
+      margin:0;
+      font-size:2rem;
+      letter-spacing:.5px;
+      display:flex;
+      align-items:center;
+      gap:12px;
+      color:var(--ink);
+      min-width: 280px;
+    }
+    .title::before{
+      content:"";
+      width:10px;
+      height:30px;
+      border-radius:6px;
+      background:var(--accent);
+      flex:0 0 auto;
+    }
+    .hint{
+      margin:0;
+      color:var(--muted);
+      max-width: 78ch;
+      font-size:1rem;
+      flex:1;
+    }
 
-.section{ margin-top:28px; }
+    /* 模組卡（tile） */
+    .tile{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:14px;
+      box-shadow:0 6px 18px rgba(0,0,0,.06);
+      overflow:hidden;
+      display:grid;
+      grid-template-columns: 64px 1fr;
+    }
 
-.card{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:14px;
-  box-shadow:var(--shadow);
-  padding:20px 22px;
-}
+    .rail{
+      background:linear-gradient(180deg, var(--accent), #7f2b2b);
+      padding:14px 10px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+    }
+    .num{
+      width:38px;
+      height:38px;
+      border-radius:999px;
+      background:rgba(255,255,255,.16);
+      border:1px solid rgba(255,255,255,.25);
+      color:#fff;
+      display:grid;
+      place-items:center;
+      font-weight:900;
+      letter-spacing:.5px;
+    }
+    .chip{
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      font-weight:800;
+      color:#fff;
+      opacity:.95;
+      font-size:.85rem;
+      letter-spacing:.12em;
+    }
 
-/* === ICON GRID === */
-.iconGrid{
-  display:grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px,1fr));
-  gap:18px;
-  margin-top:16px;
-}
-.iconItem{
-  background:#fff;
-  border:1px solid var(--border);
-  border-radius:14px;
-  box-shadow:var(--shadow);
-  padding:18px 14px;
-  text-align:center;
-}
-.iconItem svg{
-  width:42px;
-  height:42px;
-  stroke:var(--accent);
-  stroke-width:2;
-  fill:none;
-  margin-bottom:10px;
-}
-.iconItem span{
-  display:block;
-  font-weight:900;
-  font-size:1rem;
-}
+    .body{
+      padding:18px 18px 16px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      min-width: 0;
+    }
 
-/* === ORG SVG === */
-.orgWrap{
-  overflow-x:auto;
-  margin-top:16px;
-}
-.orgSvg{
-  width:100%;
-  min-width:900px;
-}
-.orgText{
-  fill:#1f2937;
-  font-size:14px;
-  font-weight:700;
-}
-.orgBox{
-  fill:#fff;
-  stroke:#9b3b3b;
-  stroke-width:1.5;
-}
-.orgLine{
-  stroke:#9b3b3b;
-  stroke-width:1.5;
-}
-</style>
+    .blockTitle{
+      margin:0;
+      font-size:1.28rem;
+      color:var(--ink);
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+    .blockTitle::before{
+      content:"";
+      width:8px;
+      height:8px;
+      border-radius:3px;
+      background:var(--accent);
+      flex:0 0 auto;
+    }
+
+    .desc{
+      margin:0;
+      color:var(--text);
+      font-size:1.03rem;
+    }
+
+    .metaRow{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:2px;
+    }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background:#fff;
+      color:var(--ink);
+      font-weight:900;
+      font-size:.92rem;
+      white-space:nowrap;
+    }
+    .dot{ width:8px; height:8px; border-radius:999px; background:var(--accent); }
+
+    /* 圖片：可點擊放大 */
+    .figure{
+      margin-top:8px;
+      border-top:1px solid var(--border);
+      padding-top:12px;
+    }
+    .zoomable{
+      width:100%;
+      height:auto;
+      display:block;
+      border-radius:12px;
+      cursor:zoom-in;
+      border:1px solid var(--border);
+      box-shadow:0 8px 18px rgba(0,0,0,.06);
+      background:#fff;
+    }
+    .figCap{
+      margin:10px 0 0;
+      color:var(--muted);
+      font-size:.95rem;
+    }
+
+    /* 三張圖：加大顯示（不是縮圖） */
+    .grid3{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:14px;
+      margin-top:14px;
+    }
+    @media (min-width: 980px){
+      .grid3{ grid-template-columns: 1fr 1fr 1fr; }
+    }
+    .mini .body{ padding:16px 16px 14px; }
+    .mini .blockTitle{ font-size:1.12rem; }
+    .mini .desc{
+      font-size:1rem;
+      display:-webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      overflow:hidden;
+    }
+    .mini .figure{ padding-top:10px; }
+
+    /* 互動：折疊內容（重點摘錄） */
+    details{
+      border:1px solid var(--border);
+      border-radius:12px;
+      padding:12px 12px;
+      background:var(--accent-weak);
+    }
+    summary{
+      cursor:pointer;
+      font-weight:900;
+      color:#5b2323;
+      list-style:none;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+    }
+    summary::-webkit-details-marker{ display:none; }
+    .sumHint{
+      color:var(--muted);
+      font-weight:800;
+      font-size:.95rem;
+      margin-left:auto;
+      white-space:nowrap;
+    }
+    .detailBody{
+      margin-top:10px;
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:12px;
+      padding:12px 12px;
+    }
+    .list{
+      margin:0;
+      padding-left:20px;
+      color:var(--text);
+    }
+    .list li{ margin:6px 0; }
+    .k{
+      font-weight:900;
+      color:var(--ink);
+    }
+
+    /* PDF box */
+    .pdfBox{
+      margin-top:16px;
+      padding:16px 16px;
+      border:1px solid var(--border);
+      border-radius:14px;
+      background:#fff;
+      box-shadow:0 6px 18px rgba(0,0,0,.06);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+    .pdfBox span{ color:var(--muted); font-weight:800; }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 12px;
+      border-radius:12px;
+      border:1px solid var(--border);
+      background:var(--accent-weak);
+      color:#5b2323;
+      font-weight:900;
+      text-decoration:none;
+      white-space:nowrap;
+      cursor:pointer;
+    }
+
+    /* Modal（點圖放大） */
+    .modal{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,.72);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:18px;
+      z-index:9999;
+    }
+    .modal.open{ display:flex; }
+    .modalCard{
+      max-width:min(1200px, 96vw);
+      max-height:92vh;
+      width:100%;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+    .modalTop{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      color:#fff;
+      font-weight:900;
+    }
+    .modalTitle{
+      overflow:hidden;
+      text-overflow:ellipsis;
+      white-space:nowrap;
+      max-width: 80%;
+    }
+    .closeBtn{
+      border:1px solid rgba(255,255,255,.35);
+      background:rgba(255,255,255,.12);
+      color:#fff;
+      padding:10px 12px;
+      border-radius:12px;
+      cursor:pointer;
+      font-weight:900;
+    }
+    .modalImgWrap{
+      background:#111;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.18);
+      overflow:auto;
+      max-height: 86vh;
+      padding:10px;
+    }
+    .modalImg{
+      width:100%;
+      height:auto;
+      display:block;
+      border-radius:10px;
+      background:#fff;
+    }
+    .modalHint{
+      color:rgba(255,255,255,.8);
+      font-weight:800;
+      font-size:.95rem;
+    }
+
+    @media (max-width: 640px){
+      .page{ padding:18px 14px 52px; }
+      .header{ flex-direction:column; align-items:flex-start; }
+      .title{ font-size:1.6rem; }
+      .tile{ grid-template-columns:56px 1fr; }
+      .chip{ display:none; }
+    }
+  </style>
 </head>
 
 <body>
-<div class="page">
-<main class="content">
+  <div class="page">
+    <div class="wrap">
 
-<header class="header">
-  <h1 class="title">宜蘭縣氣候變遷推動因應會</h1>
-  <p class="subtitle">
-    宜蘭縣依循國家氣候變遷調適政策與行動計畫，設置氣候變遷推動因應會，
-    統籌跨局處資源，推動地方氣候變遷調適治理。
-  </p>
-</header>
-
-<!-- 調適策略 -->
-<section class="section">
-  <div class="card">
-    <h2>七大調適領域</h2>
-    <div class="iconGrid">
-
-      <div class="iconItem">
-        <svg viewBox="0 0 24 24"><path d="M3 12h18"/><path d="M12 3v18"/></svg>
-        <span>維生基礎設施</span>
+      <div class="header">
+        <h1 class="title">宜蘭縣氣候變遷推動因應會</h1>
+        <p class="hint">
+          依循《氣候變遷因應法》與國家調適架構，整合縣府跨局處資源，推動地方調適治理與執行管考。 :contentReference[oaicite:0]{index=0}
+        </p>
       </div>
 
-      <div class="iconItem">
-        <svg viewBox="0 0 24 24"><path d="M12 2C7 8 7 12 7 15a5 5 0 0 0 10 0c0-3 0-7-5-13z"/></svg>
-        <span>水資源</span>
-      </div>
+      <!-- 01 主卡（大圖） -->
+      <article class="tile">
+        <div class="rail">
+          <div class="num">01</div>
+          <div class="chip">STRATEGY</div>
+        </div>
 
-      <div class="iconItem">
-        <svg viewBox="0 0 24 24"><rect x="3" y="10" width="6" height="10"/><rect x="10" y="6" width="6" height="14"/><rect x="17" y="3" width="4" height="17"/></svg>
-        <span>土地利用</span>
-      </div>
+        <div class="body">
+          <h2 class="blockTitle">調適策略與關鍵領域</h2>
+          <p class="desc">
+            聚焦維生基礎設施、水資源、土地利用、海岸及海洋、能源供給及產業、農業及生物多樣性、健康與能力建構等領域，
+            以跨局處分工與滾動檢討強化整體韌性。 :contentReference[oaicite:1]{index=1}
+          </p>
 
-      <div class="iconItem">
-        <svg viewBox="0 0 24 24"><path d="M2 16c4-4 8-4 12 0s8 4 8 4"/></svg>
-        <span>海岸及海洋</span>
-      </div>
+          <div class="metaRow">
+            <span class="pill"><span class="dot"></span>調適：7 大領域</span>
+            <span class="pill"><span class="dot"></span>工作：5 大小組＋執行秘書組</span>
+            <span class="pill"><span class="dot"></span>修訂：112/09/28 公告</span>
+          </div>
 
-      <div class="iconItem">
-        <svg viewBox="0 0 24 24"><path d="M12 2v20"/><path d="M5 7h14"/><path d="M7 17h10"/></svg>
-        <span>能源與產業</span>
-      </div>
+          <details>
+            <summary>
+              報告書重點摘錄（可展開）
+              <span class="sumHint">點我展開</span>
+            </summary>
+            <div class="detailBody">
+              <ul class="list">
+                <li><span class="k">設置目的：</span>整合因應氣候變遷事務、訂定調適策略、落實環境正義與公正轉型，邁向 2050 淨零。 :contentReference[oaicite:2]{index=2}</li>
+                <li><span class="k">主要任務：</span>願景目標與策略、跨局處協調整合、督導管考、配合中央政策、研訂研究補助獎勵、其他審議推動事項。 :contentReference[oaicite:3]{index=3}</li>
+                <li><span class="k">調適推動架構：</span>採「2 階段、6 構面」框架：界定範疇、檢視現況、評估風險、綜整決策、推動執行、檢討修正。 :contentReference[oaicite:4]{index=4}</li>
+              </ul>
+            </div>
+          </details>
 
-      <div class="iconItem">
-        <svg viewBox="0 0 24 24"><path d="M4 20l8-16 8 16z"/></svg>
-        <span>農業與生態</span>
-      </div>
+          <div class="figure">
+            <img class="zoomable"
+              src="宜蘭縣調適策略與關鍵領域說明.png"
+              alt="宜蘭縣調適策略與關鍵領域說明"
+              data-title="宜蘭縣調適策略與關鍵領域說明">
+            <p class="figCap">點圖可放大檢視（ESC 關閉）。</p>
+          </div>
+        </div>
+      </article>
 
-      <div class="iconItem">
-        <svg viewBox="0 0 24 24"><circle cx="12" cy="7" r="4"/><path d="M4 22c0-4 4-7 8-7s8 3 8 7"/></svg>
-        <span>健康與能力建構</span>
+      <!-- 下面三張（放大呈現 + 點圖放大） -->
+      <section class="grid3">
+        <article class="tile mini">
+          <div class="rail">
+            <div class="num">02</div>
+            <div class="chip">ORG</div>
+          </div>
+          <div class="body">
+            <h2 class="blockTitle">推動會組織架構</h2>
+            <p class="desc">
+              由縣長擔任召集人，副召集人由副縣長及秘書長兼任；以減緩 6 大部門、調適 7 大領域與能力建構分組推動。 :contentReference[oaicite:5]{index=5}
+            </p>
+            <div class="figure">
+              <img class="zoomable"
+                src="宜蘭縣氣候變遷因應推動會組織架構.jpeg"
+                alt="宜蘭縣氣候變遷因應推動會組織架構"
+                data-title="宜蘭縣氣候變遷因應推動會組織架構">
+            </div>
+          </div>
+        </article>
+
+        <article class="tile mini">
+          <div class="rail">
+            <div class="num">03</div>
+            <div class="chip">CENTRAL</div>
+          </div>
+          <div class="body">
+            <h2 class="blockTitle">中央權責對應</h2>
+            <p class="desc">
+              調適領域對應中央權責分工，確保地方行動與國家調適架構及跨部會推動方向一致。 :contentReference[oaicite:6]{index=6}
+            </p>
+            <div class="figure">
+              <img class="zoomable"
+                src="氣候變遷調適領域中央權責單位.jpeg"
+                alt="氣候變遷調適領域中央權責單位"
+                data-title="氣候變遷調適領域中央權責單位">
+            </div>
+          </div>
+        </article>
+
+        <article class="tile mini">
+          <div class="rail">
+            <div class="num">04</div>
+            <div class="chip">DIVISION</div>
+          </div>
+          <div class="body">
+            <h2 class="blockTitle">調適領域分工</h2>
+            <p class="desc">
+              以綠色產業、永續城鄉、宜居環境、水土資源、全民參與與執行秘書組等分工，落實主協辦與權責事項。 :contentReference[oaicite:7]{index=7}
+            </p>
+            <div class="figure">
+              <img class="zoomable"
+                src="宜蘭縣調適領域架構及分工.jpeg"
+                alt="宜蘭縣調適領域架構及分工"
+                data-title="宜蘭縣調適領域架構及分工">
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <div class="pdfBox">
+        <span>宜蘭縣氣候變遷調適執行方案（核定本）</span>
+        <a class="btn" href="114_宜蘭縣_宜蘭縣氣候變遷調適執行方案（核定本）.pdf" target="_blank" rel="noopener noreferrer">
+          ↗ 開啟 PDF
+        </a>
       </div>
 
     </div>
   </div>
-</section>
 
-<!-- 組織架構 -->
-<section class="section">
-  <div class="card">
-    <h2>推動因應會組織架構</h2>
-
-    <div class="orgWrap">
-      <svg class="orgSvg" viewBox="0 0 900 360">
-
-        <!-- 主 -->
-        <rect x="380" y="20" width="140" height="50" rx="8" class="orgBox"/>
-        <text x="450" y="50" text-anchor="middle" class="orgText">縣長<br/>召集人</text>
-
-        <!-- 線 -->
-        <line x1="450" y1="70" x2="450" y2="110" class="orgLine"/>
-
-        <!-- 中 -->
-        <rect x="330" y="110" width="240" height="50" rx="8" class="orgBox"/>
-        <text x="450" y="140" text-anchor="middle" class="orgText">氣候變遷推動因應會</text>
-
-        <!-- 線 -->
-        <line x1="450" y1="160" x2="200" y2="210" class="orgLine"/>
-        <line x1="450" y1="160" x2="450" y2="210" class="orgLine"/>
-        <line x1="450" y1="160" x2="700" y2="210" class="orgLine"/>
-
-        <!-- 下 -->
-        <rect x="120" y="210" width="160" height="50" rx="8" class="orgBox"/>
-        <text x="200" y="240" text-anchor="middle" class="orgText">調適工作小組</text>
-
-        <rect x="370" y="210" width="160" height="50" rx="8" class="orgBox"/>
-        <text x="450" y="240" text-anchor="middle" class="orgText">跨局處協調</text>
-
-        <rect x="620" y="210" width="160" height="50" rx="8" class="orgBox"/>
-        <text x="700" y="240" text-anchor="middle" class="orgText">執行與管考</text>
-
-      </svg>
+  <!-- Modal -->
+  <div class="modal" id="imgModal" aria-hidden="true">
+    <div class="modalCard" role="dialog" aria-modal="true">
+      <div class="modalTop">
+        <div class="modalTitle" id="modalTitle">圖片預覽</div>
+        <button class="closeBtn" id="closeModal" type="button">關閉</button>
+      </div>
+      <div class="modalImgWrap" id="modalImgWrap">
+        <img class="modalImg" id="modalImg" alt="">
+      </div>
+      <div class="modalHint">提示：點背景或按 ESC 可關閉；可用滑鼠滾輪/觸控板縮放（瀏覽器原生）。</div>
     </div>
-
   </div>
-</section>
 
-</main>
-</div>
+  <script>
+    (function(){
+      const modal = document.getElementById('imgModal');
+      const modalImg = document.getElementById('modalImg');
+      const modalTitle = document.getElementById('modalTitle');
+      const closeBtn = document.getElementById('closeModal');
+
+      function openModal(src, title){
+        modal.classList.add('open');
+        modal.setAttribute('aria-hidden', 'false');
+        modalImg.src = src;
+        modalImg.alt = title || '圖片預覽';
+        modalTitle.textContent = title || '圖片預覽';
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeModal(){
+        modal.classList.remove('open');
+        modal.setAttribute('aria-hidden', 'true');
+        modalImg.src = '';
+        document.body.style.overflow = '';
+      }
+
+      document.querySelectorAll('.zoomable').forEach(img=>{
+        img.addEventListener('click', ()=>{
+          openModal(img.getAttribute('src'), img.dataset.title || img.alt);
+        });
+      });
+
+      closeBtn.addEventListener('click', closeModal);
+
+      modal.addEventListener('click', (e)=>{
+        if(e.target === modal) closeModal();
+      });
+
+      document.addEventListener('keydown', (e)=>{
+        if(e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+      });
+    })();
+  </script>
 </body>
 </html>

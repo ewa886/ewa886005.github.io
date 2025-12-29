@@ -3,746 +3,169 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>宜蘭縣氣候變遷因應推動會</title>
+  <title>宜蘭縣氣候變遷推動因應會</title>
 
   <style>
     :root{
-      --bg:#f4f6f9;
+      --bg:#eef3f6;
       --card:#ffffff;
-      --ink:#0b1220;
+      --ink:#0f172a;
       --text:#1f2937;
-      --muted:#6b7280;
-      --border:#e6eaf0;
-      --accent:#9b3b3b;
-      --accent2:#1f6fb2;
-      --shadow:0 14px 34px rgba(15, 23, 42, .10);
-      --shadow2:0 8px 18px rgba(15, 23, 42, .08);
-      --radius:20px;
+      --muted:#64748b;
+      --border:#e2e8f0;
+      --primary:#0f766e;
+      --secondary:#1d4ed8;
+      --accent:#14b8a6;
+      --shadow:0 12px 28px rgba(2,6,23,.12);
+      --radius:18px;
     }
 
     *{ box-sizing:border-box; }
-    html{ scroll-behavior:smooth; }
     body{
       margin:0;
-      background:
-        radial-gradient(1000px 400px at 10% -10%, rgba(155,59,59,.16), transparent 60%),
-        radial-gradient(900px 380px at 90% 0%, rgba(31,111,178,.14), transparent 55%),
-        var(--bg);
-      font-family: "Noto Sans TC","PingFang TC","Microsoft JhengHei", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:var(--bg);
+      font-family:"Noto Sans TC","Microsoft JhengHei",system-ui,sans-serif;
       color:var(--text);
-      line-height:1.75;
-      padding:26px 16px 64px;
+      line-height:1.7;
+      padding:28px 16px 64px;
     }
-    a{ color:inherit; }
+    .wrap{ max-width:1180px; margin:0 auto; }
 
-    .wrap{ max-width:1120px; margin:0 auto; }
-
-    /* Topbar */
-    .topbar{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      margin-bottom:14px;
-    }
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      text-decoration:none;
-    }
-    .logo{
-      width:42px; height:42px;
-      border-radius:14px;
-      background:
-        linear-gradient(135deg, rgba(155,59,59,.95), rgba(31,111,178,.9));
-      box-shadow: var(--shadow2);
-      position:relative;
-      overflow:hidden;
-    }
-    .logo::after{
-      content:"";
-      position:absolute;
-      inset:-40%;
-      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.55), transparent 45%);
-      transform: rotate(18deg);
-    }
-    .brand b{
-      font-size:1.03rem;
-      letter-spacing:.3px;
-      color:var(--ink);
-    }
-    .brand span{
-      display:block;
-      font-size:.86rem;
-      color:var(--muted);
-      margin-top:-2px;
-      font-weight:700;
-    }
-
-    .nav{
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px;
-      justify-content:flex-end;
-    }
-    .pill{
-      text-decoration:none;
-      font-weight:900;
-      font-size:.92rem;
-      padding:10px 12px;
-      border-radius:999px;
-      background:rgba(255,255,255,.75);
-      border:1px solid var(--border);
-      box-shadow:0 8px 16px rgba(15,23,42,.05);
-      transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
-      white-space:nowrap;
-    }
-    .pill:hover{
-      transform:translateY(-1px);
-      background:#fff;
-      box-shadow:0 14px 22px rgba(15,23,42,.08);
-    }
-
-    /* Hero */
-    .hero{
-      background: linear-gradient(135deg, rgba(155,59,59,.18), rgba(255,255,255,.92));
-      border:1px solid var(--border);
+    header{
+      background:linear-gradient(135deg,var(--primary),var(--secondary));
+      color:#fff;
       border-radius:26px;
-      box-shadow: var(--shadow);
-      overflow:hidden;
-      position:relative;
-      padding:22px 18px;
-      display:grid;
-      gap:14px;
+      padding:28px 24px;
+      box-shadow:var(--shadow);
     }
-    .hero::after{
-      content:"";
-      position:absolute;
-      right:-130px; top:-140px;
-      width:340px; height:340px;
-      border-radius:999px;
-      background: rgba(31,111,178,.14);
-      filter: blur(.2px);
-    }
-    .hero::before{
-      content:"";
-      position:absolute;
-      left:18px; top:18px; bottom:18px;
-      width:3px;
-      border-radius:999px;
-      background: rgba(155,59,59,.6);
-    }
-    @media(min-width:920px){
-      .hero{
-        grid-template-columns: 1.35fr .65fr;
-        align-items:stretch;
-        padding:26px 22px;
-      }
-      .hero::before{ left:22px; top:22px; bottom:22px; }
-    }
-
-    .heroTitle{
+    header h1{
       margin:0;
-      font-size:2.05rem;
-      letter-spacing:.4px;
-      color:var(--ink);
-      padding-left:10px;
-      display:flex;
-      gap:12px;
-      align-items:center;
+      font-size:2rem;
+      letter-spacing:.5px;
     }
-    .heroTitle::before{
-      content:"";
-      width:10px; height:32px;
-      border-radius:12px;
-      background: var(--accent);
-      box-shadow:0 10px 20px rgba(155,59,59,.22);
-    }
-    .heroSub{
-      margin:8px 0 0;
-      padding-left:10px;
-      color:var(--muted);
-      max-width: 60ch;
-      font-weight:700;
+    header p{
+      margin:10px 0 0;
+      opacity:.9;
+      font-weight:600;
     }
 
-    .chips{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      margin-top:14px;
-      padding-left:10px;
-    }
-    .chip{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:9px 12px;
-      border-radius:999px;
-      border:1px solid var(--border);
-      background:#fff;
-      box-shadow:0 10px 18px rgba(15,23,42,.06);
-      font-weight:900;
-      text-decoration:none;
-      transition:transform .15s ease, box-shadow .15s ease;
-      white-space:nowrap;
-    }
-    .chip:hover{
-      transform:translateY(-1px);
-      box-shadow:0 16px 26px rgba(15,23,42,.10);
-    }
-    .dot{
-      width:10px; height:10px;
-      border-radius:999px;
-      background: var(--accent);
-    }
-    .dot.blue{ background: var(--accent2); }
+    section{ margin-top:26px; }
 
-    .summaryCard{
-      background:#fff;
-      border:1px solid var(--border);
-      border-radius:22px;
-      padding:14px;
-      box-shadow:0 10px 22px rgba(15,23,42,.07);
-      z-index:1;
-      display:grid;
-      gap:10px;
-    }
-    .summaryRow{
-      border:1px solid rgba(155,59,59,.16);
-      background: linear-gradient(180deg, rgba(155,59,59,.09), rgba(255,255,255,0));
-      border-radius:18px;
-      padding:12px 12px;
-      display:flex;
-      gap:10px;
-      align-items:flex-start;
-      justify-content:space-between;
-    }
-    .summaryRow b{ color:var(--ink); font-size:1.05rem; }
-    .summaryRow small{ display:block; color:var(--muted); font-weight:700; margin-top:2px; }
-    .summaryRow span{ color:var(--muted); font-weight:900; white-space:nowrap; }
-
-    /* Sections */
-    section{ margin-top:22px; }
-    .sectionHead{
-      display:flex;
-      align-items:flex-end;
-      justify-content:space-between;
-      gap:12px;
-      margin:22px 4px 10px;
-    }
     h2{
-      margin:0;
+      margin:0 0 12px;
       font-size:1.35rem;
-      letter-spacing:.2px;
       color:var(--ink);
       display:flex;
-      gap:10px;
       align-items:center;
+      gap:10px;
     }
     h2::before{
       content:"";
-      width:10px; height:10px;
-      border-radius:3px;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      box-shadow:0 10px 18px rgba(31,111,178,.18);
+      width:10px;height:10px;
+      border-radius:4px;
+      background:var(--accent);
     }
-    .hint{
-      color:var(--muted);
-      font-weight:700;
-      font-size:.92rem;
+
+    .card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    .cardBody{ padding:16px 18px; }
+
+    .overview img{
+      width:100%;
+      display:block;
+      border-top:1px solid var(--border);
     }
 
     .grid{
       display:grid;
-      gap:14px;
-      grid-template-columns: 1fr;
+      gap:18px;
     }
     @media(min-width:900px){
-      .grid{ grid-template-columns: 1fr 1fr; }
-      .grid.one{ grid-template-columns: 1fr; }
+      .grid{ grid-template-columns:1fr 1fr; }
     }
 
-    .card{
-      background: rgba(255,255,255,.86);
-      backdrop-filter: blur(6px);
-      border:1px solid var(--border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow2);
-      overflow:hidden;
-    }
-    .cardBody{
-      padding:14px 14px 16px;
-    }
-    .cardTitle{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      padding:14px 14px 0;
-    }
-    .cardTitle b{
-      color:var(--ink);
-      font-size:1.02rem;
-    }
-    .badge{
-      font-size:.82rem;
-      font-weight:900;
-      padding:6px 10px;
-      border-radius:999px;
-      border:1px solid var(--border);
-      background:#fff;
-      color:var(--muted);
-      white-space:nowrap;
-    }
-
-    .imgWrap{
-      position:relative;
-      overflow:hidden;
-      border-top:1px solid var(--border);
-      background: linear-gradient(180deg, rgba(15,23,42,.04), rgba(15,23,42,.00));
-    }
-    img.figure{
-      width:100%;
-      height:auto;
-      display:block;
-    }
-    .imgMeta{
-      padding:10px 14px 14px;
-      color:var(--muted);
-      font-weight:700;
-      font-size:.92rem;
-    }
-
-    .btnRow{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      padding:14px;
-      border-top:1px solid var(--border);
-      background: rgba(255,255,255,.7);
-    }
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      padding:10px 14px;
-      border-radius:12px;
-      border:1px solid var(--border);
-      background:#fff;
-      text-decoration:none;
-      font-weight:900;
-      box-shadow:0 10px 18px rgba(15,23,42,.06);
-      transition: transform .15s ease, box-shadow .15s ease;
-    }
-    .btn:hover{
-      transform:translateY(-1px);
-      box-shadow:0 16px 26px rgba(15,23,42,.10);
-    }
-    .btnPrimary{
-      background: linear-gradient(135deg, rgba(155,59,59,.95), rgba(31,111,178,.92));
-      color:#fff;
-      border: none;
-    }
-    .btnPrimary:hover{ box-shadow:0 18px 30px rgba(15,23,42,.16); }
-    .icon{
-      width:18px; height:18px;
-      display:inline-block;
-      border-radius:6px;
-      background: rgba(255,255,255,.25);
-    }
-    .btn:not(.btnPrimary) .icon{
-      background: linear-gradient(135deg, rgba(155,59,59,.28), rgba(31,111,178,.22));
-    }
-
-    /* Gallery */
     .gallery{
       display:grid;
-      gap:14px;
-      grid-template-columns: repeat(1, 1fr);
+      gap:18px;
     }
-    @media(min-width:640px){
-      .gallery{ grid-template-columns: repeat(2, 1fr); }
+    @media(min-width:768px){
+      .gallery{ grid-template-columns:repeat(3,1fr); }
     }
-    @media(min-width:980px){
-      .gallery{ grid-template-columns: repeat(3, 1fr); }
-    }
+
     .gItem{
       background:#fff;
       border:1px solid var(--border);
-      border-radius:18px;
+      border-radius:16px;
+      box-shadow:var(--shadow);
       overflow:hidden;
-      box-shadow: var(--shadow2);
-      cursor:pointer;
-      transition: transform .15s ease, box-shadow .15s ease;
     }
-    .gItem:hover{
-      transform: translateY(-2px);
-      box-shadow: 0 18px 34px rgba(15,23,42,.14);
-    }
-    .gCap{
-      padding:10px 12px 12px;
-      color:var(--muted);
-      font-weight:800;
-      font-size:.92rem;
-    }
-    .gImg{
+    .gItem img{
       width:100%;
       display:block;
-      background: linear-gradient(180deg, rgba(15,23,42,.05), rgba(15,23,42,.00));
     }
 
-    /* Error label */
-    .errorTag{
-      display:none;
-      position:absolute;
-      left:12px; top:12px;
-      background: rgba(155,59,59,.92);
-      color:#fff;
-      padding:8px 10px;
-      border-radius:12px;
-      font-weight:900;
-      font-size:.88rem;
-      box-shadow: 0 12px 22px rgba(15,23,42,.18);
-    }
-    .imgWrap.isError .errorTag{ display:inline-flex; }
-
-    /* Lightbox */
-    .lightbox{
-      position:fixed;
-      inset:0;
-      background: rgba(0,0,0,.72);
-      display:none;
+    .btn{
+      display:inline-flex;
       align-items:center;
       justify-content:center;
-      padding:18px;
-      z-index:999;
-    }
-    .lightbox.show{ display:flex; }
-    .lbPanel{
-      max-width:1100px;
-      width:min(1100px, 100%);
-      background:#0b1220;
-      border-radius:18px;
-      overflow:hidden;
-      border:1px solid rgba(255,255,255,.12);
-      box-shadow: 0 24px 60px rgba(0,0,0,.45);
-      position:relative;
-    }
-    .lbTop{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      padding:12px 14px;
-      background: rgba(255,255,255,.06);
-      border-bottom:1px solid rgba(255,255,255,.10);
+      padding:12px 18px;
+      border-radius:14px;
+      background:linear-gradient(135deg,var(--primary),var(--secondary));
       color:#fff;
-    }
-    .lbTop b{ font-size:.98rem; }
-    .lbClose{
-      border:none;
-      background: rgba(255,255,255,.12);
-      color:#fff;
-      font-weight:900;
-      border-radius:12px;
-      padding:8px 10px;
-      cursor:pointer;
-    }
-    .lbClose:hover{ background: rgba(255,255,255,.18); }
-    .lbImg{
-      width:100%;
-      height:auto;
-      display:block;
-      background:#0b1220;
-    }
-
-    footer{
-      margin-top:26px;
-      color:var(--muted);
       font-weight:700;
-      font-size:.92rem;
-      text-align:center;
-      padding:18px 10px 0;
+      text-decoration:none;
+      box-shadow:var(--shadow);
     }
   </style>
 </head>
 
 <body>
-  <div class="wrap">
+<div class="wrap">
 
-    <!-- Topbar -->
-    <div class="topbar">
-      <a class="brand" href="#top">
-        <div class="logo" aria-hidden="true"></div>
-        <div>
-          <b>宜蘭縣氣候變遷因應推動會</b>
-          <span>調適架構｜關鍵領域｜文件下載</span>
-        </div>
-      </a>
+<header>
+  <h1>宜蘭縣氣候變遷推動因應會</h1>
+  <p>整合中央政策、地方治理與跨局處協作，推動宜蘭縣氣候變遷調適行動</p>
+</header>
 
-      <nav class="nav" aria-label="頁面導覽">
-        <a class="pill" href="#overview">概覽</a>
-        <a class="pill" href="#gallery">圖卡</a>
-        <a class="pill" href="#pdf">PDF</a>
-      </nav>
+<section class="overview">
+  <h2>調適策略與關鍵領域概述</h2>
+  <div class="card">
+    <div class="cardBody">
+      本推動因應會依循國家氣候變遷調適政策架構，整合維生基礎設施、水資源、土地利用、
+      海岸及海洋、能源供給與產業、農業及生物多樣性、健康與能力建構等關鍵領域，
+      作為宜蘭縣推動氣候變遷調適與治理的核心基礎。
     </div>
-
-    <!-- Hero -->
-    <header class="hero" id="top">
-      <div>
-        <h1 class="heroTitle">宜蘭縣調適策略與推動架構</h1>
-        <p class="heroSub">
-          這頁把你提供的 4 張圖與核定本 PDF 整理成一個好讀、好看、可放大預覽、可直接下載的單頁網站。
-          （中文檔名、全形括號我也一起處理掉）
-        </p>
-
-        <div class="chips">
-          <a class="chip" href="#overview"><span class="dot"></span>概覽圖</a>
-          <a class="chip" href="#gallery"><span class="dot blue"></span>重點圖卡</a>
-          <a class="chip" href="#pdf"><span class="dot"></span>核定本下載</a>
-        </div>
-      </div>
-
-      <aside class="summaryCard" aria-label="頁面摘要">
-        <div class="summaryRow">
-          <div>
-            <b>內容包含</b>
-            <small>策略 × 組織 × 權責 × 分工</small>
-          </div>
-          <span>4 張圖</span>
-        </div>
-        <div class="summaryRow">
-          <div>
-            <b>文件</b>
-            <small>核定本 PDF</small>
-          </div>
-          <span>1 份</span>
-        </div>
-        <div class="summaryRow">
-          <div>
-            <b>功能</b>
-            <small>放大預覽・穩定連結</small>
-          </div>
-          <span>可用</span>
-        </div>
-      </aside>
-    </header>
-
-    <!-- Overview -->
-    <section id="overview">
-      <div class="sectionHead">
-        <h2>概覽</h2>
-        <div class="hint">點圖片可放大預覽</div>
-      </div>
-
-      <div class="grid one">
-        <article class="card">
-          <div class="cardTitle">
-            <b>宜蘭縣調適策略與關鍵領域說明</b>
-            <span class="badge">overview</span>
-          </div>
-
-          <div class="imgWrap" id="wrapOverview">
-            <span class="errorTag">圖片載入失敗：請檢查檔名/位置</span>
-            <img class="figure" id="imgOverview" alt="宜蘭縣調適策略與關鍵領域說明">
-          </div>
-
-          <div class="imgMeta">
-            若圖片未顯示，通常是「檔案不在同一層」或「副檔名/大小寫不一致」。
-          </div>
-
-          <div class="btnRow">
-            <a class="btn" href="#gallery"><span class="icon"></span>看其他圖卡</a>
-            <a class="btn btnPrimary" href="#pdf"><span class="icon"></span>直接下載核定本</a>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- Gallery -->
-    <section id="gallery">
-      <div class="sectionHead">
-        <h2>重點圖卡</h2>
-        <div class="hint">點任一張 → 全螢幕放大</div>
-      </div>
-
-      <div class="gallery" id="galleryGrid" aria-label="圖片清單">
-        <!-- JS 會自動生成 -->
-      </div>
-    </section>
-
-    <!-- PDF -->
-    <section id="pdf">
-      <div class="sectionHead">
-        <h2>核定本文件</h2>
-        <div class="hint">下載或新視窗開啟</div>
-      </div>
-
-      <div class="grid">
-        <article class="card">
-          <div class="cardTitle">
-            <b>114_宜蘭縣_宜蘭縣氣候變遷調適執行方案（核定本）</b>
-            <span class="badge">PDF</span>
-          </div>
-          <div class="cardBody">
-            連結已做 URL 編碼處理，不改檔名也能在 GitHub Pages 穩定開啟。
-          </div>
-          <div class="btnRow">
-            <a class="btn btnPrimary" id="pdfOpen" target="_blank" rel="noopener">
-              <span class="icon"></span>開啟 PDF
-            </a>
-            <a class="btn" id="pdfDownload" download>
-              <span class="icon"></span>下載 PDF
-            </a>
-          </div>
-        </article>
-
-        <article class="card">
-          <div class="cardTitle">
-            <b>小提醒</b>
-            <span class="badge">Pages</span>
-          </div>
-          <div class="cardBody">
-            你的 <b>index.html、4 張圖片、PDF</b> 建議都放在同一層根目錄；
-            GitHub Pages 的 Settings → Pages 來源要指到同一個位置（通常 main / root）。
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <footer>
-      © 宜蘭縣氣候變遷因應推動會（單頁展示）
-    </footer>
-
+    <img src="宜蘭縣調適策略與關鍵領域說明.png" alt="宜蘭縣調適策略與關鍵領域說明">
   </div>
+</section>
 
-  <!-- Lightbox -->
-  <div class="lightbox" id="lightbox" aria-hidden="true">
-    <div class="lbPanel" role="dialog" aria-modal="true" aria-label="圖片預覽視窗">
-      <div class="lbTop">
-        <b id="lbTitle">預覽</b>
-        <button class="lbClose" id="lbClose" type="button">關閉</button>
-      </div>
-      <img class="lbImg" id="lbImg" alt="放大圖片預覽">
+<section>
+  <h2>組織與權責架構</h2>
+  <div class="gallery">
+    <div class="gItem">
+      <img src="宜蘭縣氣候變遷因應推動會組織架構.jpeg" alt="宜蘭縣氣候變遷因應推動會組織架構">
+    </div>
+    <div class="gItem">
+      <img src="氣候變遷調適領域中央權責單位.jpeg" alt="氣候變遷調適領域中央權責單位">
+    </div>
+    <div class="gItem">
+      <img src="宜蘭縣調適領域架構及分工.jpeg" alt="宜蘭縣調適領域架構及分工">
     </div>
   </div>
+</section>
 
-  <noscript>
-    <div style="max-width:1120px;margin:18px auto 0;padding:14px 16px;background:#fff;border:1px solid #e6eaf0;border-radius:16px;font-weight:800;color:#1f2937;">
-      你的瀏覽器目前停用 JavaScript：圖片與 PDF 可能無法自動套用編碼連結。請啟用 JavaScript 或改用支援的瀏覽器。
-    </div>
-  </noscript>
+<section>
+  <h2>調適行動文件</h2>
+  <a class="btn" href="114_宜蘭縣_宜蘭縣氣候變遷調適執行方案（核定本）.pdf" target="_blank" rel="noopener">
+    開啟核定本 PDF
+  </a>
+</section>
 
-  <script>
-    // ====== 你的檔名（照你要求：完全不改檔名） ======
-    const FILES = {
-      overview: "宜蘭縣調適策略與關鍵領域說明.png",
-      images: [
-        { title: "宜蘭縣氣候變遷因應推動會組織架構", file: "宜蘭縣氣候變遷因應推動會組織架構.jpeg" },
-        { title: "氣候變遷調適領域中央權責單位",     file: "氣候變遷調適領域中央權責單位.jpeg" },
-        { title: "宜蘭縣調適領域架構及分工",         file: "宜蘭縣調適領域架構及分工.jpeg" }
-      ],
-      pdf: "114_宜蘭縣_宜蘭縣氣候變遷調適執行方案（核定本）.pdf"
-    };
-
-    // ====== 工具：把中文/全形括號的路徑轉成可用 URL ======
-    function safeURL(path){
-      // encodeURI 會保留 / ，同時把中文與全形括號等轉成可用編碼
-      return encodeURI(path);
-    }
-
-    // ====== Overview 圖 ======
-    const imgOverview = document.getElementById("imgOverview");
-    const wrapOverview = document.getElementById("wrapOverview");
-
-    imgOverview.src = safeURL(FILES.overview);
-    imgOverview.addEventListener("error", () => {
-      wrapOverview.classList.add("isError");
-    });
-    imgOverview.addEventListener("click", () => openLightbox("宜蘭縣調適策略與關鍵領域說明", FILES.overview));
-
-    // ====== Gallery 生成 ======
-    const grid = document.getElementById("galleryGrid");
-
-    FILES.images.forEach((item) => {
-      const card = document.createElement("div");
-      card.className = "gItem";
-      card.tabIndex = 0;
-      card.setAttribute("role", "button");
-      card.setAttribute("aria-label", "開啟圖片：" + item.title);
-
-      const img = document.createElement("img");
-      img.className = "gImg";
-      img.alt = item.title;
-      img.src = safeURL(item.file);
-
-      // 如果單張圖壞掉，顯示文字，不讓整個區塊空
-      img.addEventListener("error", () => {
-        img.style.display = "none";
-        const fallback = document.createElement("div");
-        fallback.style.padding = "14px 12px";
-        fallback.style.fontWeight = "900";
-        fallback.style.color = "#9b3b3b";
-        fallback.textContent = "圖片載入失敗：請檢查「" + item.file + "」是否與 index.html 同一層";
-        card.insertBefore(fallback, cap);
-      });
-
-      const cap = document.createElement("div");
-      cap.className = "gCap";
-      cap.textContent = item.title;
-
-      card.appendChild(img);
-      card.appendChild(cap);
-
-      card.addEventListener("click", () => openLightbox(item.title, item.file));
-      card.addEventListener("keydown", (e) => {
-        if(e.key === "Enter" || e.key === " "){
-          e.preventDefault();
-          openLightbox(item.title, item.file);
-        }
-      });
-
-      grid.appendChild(card);
-    });
-
-    // ====== PDF 連結（開啟/下載） ======
-    const pdfOpen = document.getElementById("pdfOpen");
-    const pdfDownload = document.getElementById("pdfDownload");
-    const pdfURL = safeURL(FILES.pdf);
-
-    pdfOpen.href = pdfURL;
-    pdfDownload.href = pdfURL;
-
-    // ====== Lightbox ======
-    const lightbox = document.getElementById("lightbox");
-    const lbImg = document.getElementById("lbImg");
-    const lbTitle = document.getElementById("lbTitle");
-    const lbClose = document.getElementById("lbClose");
-
-    function openLightbox(title, file){
-      lbTitle.textContent = title;
-      lbImg.src = safeURL(file);
-      lightbox.classList.add("show");
-      lightbox.setAttribute("aria-hidden", "false");
-      document.body.style.overflow = "hidden";
-    }
-
-    function closeLightbox(){
-      lightbox.classList.remove("show");
-      lightbox.setAttribute("aria-hidden", "true");
-      lbImg.src = "";
-      document.body.style.overflow = "";
-    }
-
-    lbClose.addEventListener("click", closeLightbox);
-    lightbox.addEventListener("click", (e) => {
-      if(e.target === lightbox) closeLightbox();
-    });
-    window.addEventListener("keydown", (e) => {
-      if(e.key === "Escape" && lightbox.classList.contains("show")) closeLightbox();
-    });
-  </script>
+</div>
 </body>
 </html>
